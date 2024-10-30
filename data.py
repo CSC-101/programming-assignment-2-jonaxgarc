@@ -55,6 +55,14 @@ class Duration:
                 type(other) == Duration and
                 self.minutes == other.minutes and
                 self.seconds == other.seconds)
+    def __add__(self, other) -> 'Duration':
+        total_minutes = self.minutes + other.minutes
+        total_seconds = self.seconds + other.seconds
+
+        total_minutes += total_seconds // 60
+        total_seconds = total_seconds % 60
+
+        return Duration(total_minutes, total_seconds)
 
 
 # Representation of a song.
